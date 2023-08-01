@@ -1,22 +1,36 @@
 <template>
 	<header>
 		<h1>{{ title }}</h1>
-        <Button text = "Add Task" color = "green"/>
+		<Button v-show="homePage"
+			@btn-click="$emit('toggle-add-task')"
+			:text="showAddTask ? 'Close' : 'Add Task'"
+			:color="showAddTask ? 'red' : 'green'"
+		/>
 	</header>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Button from './Button.vue';
+import Button from "./Button.vue";
 
 export default defineComponent({
 	name: "Header",
-    props: {
-        title: String
-    },
-    components: {
-        Button
-    }
+	props: {
+		title: String,
+		showAddTask: Boolean,
+	},
+	components: {
+		Button,
+	},
+	computed: {
+		homePage() {
+			if (this.$route.path === "/") {
+				return true;
+			} else {
+				return false;
+			}
+		},
+	},
 });
 </script>
 
