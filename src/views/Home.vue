@@ -23,7 +23,7 @@ export default defineComponent({
 	},
 	data() {
 		return {
-			tasks: [],
+			tasks: [] as any[],
 		};
 	},
 	methods: {
